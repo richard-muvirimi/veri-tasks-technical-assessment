@@ -1,0 +1,3 @@
+[submodule "fe/src/assets"]
+	path = fe/src/assets
+	url = https://github.com/bootstrapdash/skydash-free-bootstrap-admin-template

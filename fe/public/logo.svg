@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Task Manager Logo -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="TaskManagerLogo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+     x="0px" y="0px" width="220px" height="38px" viewBox="0 0 220 38" enable-background="new 0 0 220 38" xml:space="preserve">
+
+<!-- Clipboard background -->
+<rect x="6" y="4" width="26" height="30" rx="2" ry="2" fill="#4A90E2" stroke="#3A7BC8" stroke-width="1"/>
+<rect x="8" y="6" width="22" height="26" fill="#FFFFFF"/>
+
+<!-- Clip at top -->
+<rect x="14" y="2" width="10" height="4" rx="1" ry="1" fill="#666666"/>
+
+<!-- Task list lines -->
+<rect x="12" y="10" width="14" height="2" fill="#E0E0E0"/>
+<rect x="12" y="14" width="14" height="2" fill="#E0E0E0"/>
+<rect x="12" y="18" width="14" height="2" fill="#E0E0E0"/>
+<rect x="12" y="22" width="14" height="2" fill="#E0E0E0"/>
+<rect x="12" y="26" width="14" height="2" fill="#E0E0E0"/>
+
+<!-- Checkboxes -->
+<rect x="12" y="9" width="4" height="4" rx="0.5" ry="0.5" fill="#FFFFFF" stroke="#4A90E2" stroke-width="1"/>
+<rect x="12" y="13" width="4" height="4" rx="0.5" ry="0.5" fill="#4A90E2" stroke="#4A90E2" stroke-width="1"/>
+<rect x="12" y="17" width="4" height="4" rx="0.5" ry="0.5" fill="#FFFFFF" stroke="#4A90E2" stroke-width="1"/>
+<rect x="12" y="21" width="4" height="4" rx="0.5" ry="0.5" fill="#4A90E2" stroke="#4A90E2" stroke-width="1"/>
+<rect x="12" y="25" width="4" height="4" rx="0.5" ry="0.5" fill="#FFFFFF" stroke="#4A90E2" stroke-width="1"/>
+
+<!-- Checkmarks for completed tasks -->
+<path d="M13.5,15.5 L14.5,16.5 L16.5,14.5" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.5,23.5 L14.5,24.5 L16.5,22.5" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+<!-- Text: "TaskManager" -->
+<text x="40" y="26" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2C3E50">TaskManager</text>
+
+<!-- Productivity accent - small check circle -->
+<circle cx="200" cy="19" r="8" fill="#27AE60"/>
+<path d="M196,19 L199,22 L204,16" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+</svg>

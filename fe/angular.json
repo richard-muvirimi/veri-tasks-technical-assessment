@@ -29,13 +29,27 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
+              "styles": [
+                "src/assets/template/vendors/feather/feather.css",
+                "src/assets/template/vendors/ti-icons/css/themify-icons.css",
+                "src/assets/template/vendors/css/vendor.bundle.base.css",
+                "src/assets/template/css/vertical-layout-light/style.css",
+                "src/assets/template/vendors/mdi/css/materialdesignicons.min.css",
+                "src/styles.scss"
+            ],
+            "scripts": [
+                "src/assets/template/vendors/js/vendor.bundle.base.js",
+                "src/assets/template/js/hoverable-collapse.js"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
+            },
+            "stylePreprocessorOptions": {
+              "sass": {
+                "silenceDeprecations": ["mixed-decls", "color-functions", "global-builtin", "import", "slash-div", "abs-percent"]
+              }
             }
           },
           "configurations": {
@@ -44,7 +58,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "3MB"
                 },
                 {
                   "type": "anyComponentStyle",
