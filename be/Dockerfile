@@ -12,7 +12,7 @@ COPY gradle/ gradle/
 COPY src/ src/
 
 # Build the application JAR (skip tests for faster build)
-RUN ./gradlew build -x test
+RUN chmod +x ./gradlew && ./gradlew build -x test
 
 # Production stage with JRE
 FROM eclipse-temurin:21-jre
