@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory
 
 @RestController
 @RequestMapping("/api/tasks")
-@CrossOrigin(origins = ["http://localhost:4200"])
 class TaskController(
     private val taskService: TaskService
 ) {

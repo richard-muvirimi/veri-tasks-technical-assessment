@@ -1,5 +1,6 @@
 package com.tyganeutronics.tasks.demo.config
 
+import org.slf4j.LoggerFactory
 import com.tyganeutronics.tasks.demo.security.JwtAuthenticationFilter
 import com.tyganeutronics.tasks.demo.service.CustomUserDetailsService
 import org.springframework.context.annotation.Bean
@@ -13,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
@@ -24,6 +26,10 @@ class SecurityConfig(
     private val userDetailsService: CustomUserDetailsService,
     private val jwtAuthenticationFilter: JwtAuthenticationFilter
 ) {
+    @Value("\${CORS_ALLOWED_ORIGINS:http://localhost:4200}")
+    private lateinit var allowedOrigins: String
+
+    private val logger = LoggerFactory.getLogger(SecurityConfig::class.java)
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {
@@ -45,8 +51,9 @@ class SecurityConfig(
 
     @Bean
     fun corsConfigurationSource(): CorsConfigurationSource {
+        logger.info("CORS allowed origins: {}", allowedOrigins)
         val configuration = CorsConfiguration()
-        configuration.allowedOriginPatterns = listOf("http://localhost:4200")
+        configuration.allowedOriginPatterns = allowedOrigins.split(",").map { it.trim() }
         configuration.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
         configuration.allowedHeaders = listOf("*")
         configuration.allowCredentials = true

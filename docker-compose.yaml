@@ -32,6 +32,10 @@ services:
       - SPRING_DATASOURCE_USERNAME=sa
       - SPRING_DATASOURCE_PASSWORD=
       - SPRING_H2_CONSOLE_ENABLED=true
+      - CORS_ALLOWED_ORIGINS=${FRONTEND_URL}
+    env_file:
+      - path: .env
+        required: false
     depends_on:
       - h2-database
     healthcheck:
@@ -46,11 +50,16 @@ services:
     build:
       context: ./fe
       dockerfile: Dockerfile
+      args:
+        - BACKEND_URL=${BACKEND_URL}
     container_name: tasks-frontend
     ports:
       - "4200:4000"
     environment:
       - NODE_ENV=production
+    env_file:
+      - path: .env
+        required: false
     depends_on:
       backend:
         condition: service_healthy

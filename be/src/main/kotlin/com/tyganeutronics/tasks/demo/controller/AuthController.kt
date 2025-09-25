@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = ["http://localhost:4200"])
 class AuthController(
     private val authService: AuthService
 ) {

@@ -38,6 +38,22 @@ docker compose up --build
 - **Backend API**: <http://localhost:8081>
 - **H2 Database Console**: <http://localhost:8082>
 
+## Configuration
+
+### Backend URL
+
+The Angular frontend connects to the Spring Boot backend via the `BACKEND_URL` environment variable. In the Docker setup, this is automatically configured to `http://localhost:8081`.
+
+If you need to override the backend URL (e.g., for local development or different environments), you can:
+
+1. **Using Docker Compose**: Modify the `BACKEND_URL` environment variable in `docker-compose.yaml` under the `frontend` service.
+
+2. **Using Environment File**: Create a `.env` file in the project root with:
+
+   ```text
+   BACKEND_URL=http://your-backend-url:port
+   ```
+
 ## Docker Commands
 
 ```bash

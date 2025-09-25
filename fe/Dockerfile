@@ -13,6 +13,11 @@ RUN npm ci
 # Copy source code
 COPY . .
 
+# Set build argument for backend URL (default to localhost if not set)
+ARG BACKEND_URL=http://localhost:8081
+ENV BACKEND_URL=${BACKEND_URL}
+RUN find ./src/environments/ -type f -name '*.ts' | xargs sed -i "s|http://localhost:8081|${BACKEND_URL}|g"
+
 # Build the application
 RUN npm run build
 
