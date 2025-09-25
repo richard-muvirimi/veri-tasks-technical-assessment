@@ -19,6 +19,9 @@ RUN npm run build
 # Production stage
 FROM node:20-alpine AS production
 
+# Install curl for health checks
+RUN apk add --no-cache curl
+
 # Set working directory
 WORKDIR /app
 
@@ -35,4 +38,4 @@ RUN npm ci --only=production
 EXPOSE 4000
 
 # Start the SSR server
-CMD ["npm", "run", "serve:ssr:fe"]
+CMD [ "sh", "-c", "npm run serve:ssr:fe --host 0.0.0.0"]

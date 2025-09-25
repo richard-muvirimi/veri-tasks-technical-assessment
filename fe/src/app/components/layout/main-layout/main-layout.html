@@ -1,0 +1,59 @@
+<div class="container-scroller">
+  <!-- Navigation -->
+  <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+      <a class="navbar-brand brand-logo mr-5" routerLink="/dashboard"><img src="/logo.svg" class="mr-2" alt="Tasks App Logo"/></a>
+      <a class="navbar-brand brand-logo-mini" routerLink="/dashboard"><img src="/logo.svg" alt="Tasks App Logo"/></a>
+    </div>
+    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize" title="Toggle sidebar">
+        <span class="icon-menu"></span>
+      </button>
+      <ul class="navbar-nav navbar-nav-right">
+        <li class="nav-item nav-profile dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+            <span class="mr-2">{{ currentUser?.username }}</span>
+            <i class="ti-user"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+            <a class="dropdown-item" (click)="logout()">
+              <i class="ti-power-off text-primary"></i>
+              Logout
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Layout -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- Sidebar -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+            <i class="icon-grid menu-icon"></i>
+            <span class="menu-title">Dashboard</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Panel -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <!-- This is where the routed components will be displayed -->
+        <router-outlet></router-outlet>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Task Manager Application</span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>

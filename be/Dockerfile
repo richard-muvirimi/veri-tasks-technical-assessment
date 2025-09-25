@@ -17,14 +17,17 @@ RUN ./gradlew build -x test
 # Production stage with JRE
 FROM eclipse-temurin:21-jre
 
+# Install curl for health checks
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
 # Set working directory
 WORKDIR /app
 
 # Copy the built JAR from build stage
 COPY --from=build /app/build/libs/*.jar app.jar
 
-# Expose port 8080 (default Spring Boot port)
-EXPOSE 8080
+# Expose port 8081 (configured Spring Boot port)
+EXPOSE 8081
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]

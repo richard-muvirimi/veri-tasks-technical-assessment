@@ -1,0 +1,12 @@
+/* Dashboard component specific styles */
+.main-panel {
+  padding-top: 70px; /* account for fixed navbar */
+}
+
+.card .card-title {
+  font-weight: 600;
+}
+
+table.table td, table.table th {
+  width: 1%;
+}

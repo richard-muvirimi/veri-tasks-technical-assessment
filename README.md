@@ -35,7 +35,7 @@ docker compose up --build
 ### Access Points
 
 - **Frontend**: <http://localhost:4200>
-- **Backend API**: <http://localhost:8080>
+- **Backend API**: <http://localhost:8081>
 - **H2 Database Console**: <http://localhost:8082>
 
 ## Docker Commands

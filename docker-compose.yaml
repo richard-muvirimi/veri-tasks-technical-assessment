@@ -1,18 +1,22 @@
-version: '3.8'
-
 services:
   # H2 Database service
   h2-database:
-    image: oscarfonts/h2:latest
+    image: oscarfonts/h2:alpine
     container_name: tasks-h2-db
     ports:
-      - "8082:8082"
-      - "9092:9092"
+      - "8082:81"
+      - "9092:1521"
     volumes:
       - h2_data:/opt/h2-data
     environment:
-      - H2_OPTIONS=-web -webAllowOthers -tcp -tcpAllowOthers -baseDir /opt/h2-data
+      - H2_OPTIONS=-web -webAllowOthers -tcp -tcpAllowOthers -ifNotExists -baseDir /opt/h2-data
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "sh", "-c", "nc -z localhost 1521 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
 
   # Backend service (Spring Boot with Kotlin)
   backend:
@@ -21,21 +25,21 @@ services:
       dockerfile: Dockerfile
     container_name: tasks-backend
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      - SPRING_DATASOURCE_URL=jdbc:h2:tcp://h2-database:9092/./testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      - SPRING_DATASOURCE_URL=jdbc:h2:tcp://h2-database:1521/testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
       - SPRING_DATASOURCE_USERNAME=sa
       - SPRING_DATASOURCE_PASSWORD=
       - SPRING_H2_CONSOLE_ENABLED=true
     depends_on:
       - h2-database
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8081/health/status"]
       interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+      timeout: 15s
+      retries: 5
+      start_period: 60s
 
   # Frontend service (Angular SSR)
   frontend:
@@ -50,6 +54,12 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4000/health/status"]
+      interval: 30s
+      timeout: 15s
+      retries: 5
+      start_period: 60s
 
 volumes:
   h2_data:
