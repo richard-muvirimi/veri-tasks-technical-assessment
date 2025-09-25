@@ -46,12 +46,11 @@ The Angular frontend connects to the Spring Boot backend via the `BACKEND_URL` e
 
 If you need to override the backend URL (e.g., for local development or different environments), you can:
 
-1. **Using Docker Compose**: Modify the `BACKEND_URL` environment variable in `docker-compose.yaml` under the `frontend` service.
+1. **Using Environment File**: Copy `.env.example` to `.env` in the project root and set the server URLs as needed:
 
-2. **Using Environment File**: Create a `.env` file in the project root with:
-
-   ```text
-   BACKEND_URL=http://your-backend-url:port
+   ```bash
+   cp .env.example .env
+   # Then edit .env to set BACKEND_URL, FRONTEND_URL, etc.
    ```
 
 ## Docker Commands
